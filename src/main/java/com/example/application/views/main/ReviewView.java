@@ -3,6 +3,7 @@ package com.example.application.views.main;
 import com.example.application.data.entity.MovieEntity;
 import com.example.application.data.service.MovieService;
 import com.example.application.data.service.ReviewService;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
@@ -34,8 +35,8 @@ public class ReviewView extends VerticalLayout implements BeforeEnterObserver {
                 .filter(mov -> mov.getId().equals(movieId))
                 .findFirst().orElse(new MovieEntity());
 
-        /*add(new Label( "Title: "+ movie.getTitle()));
+        add(new Label( "Title: "+ movie.getTitle()));
         add(new Label("Author: "+movie.getAuthor()));
-        add(new Label("Summary: " + movie.getPlot()));*/
+        add(new Label("Summary: " + movie.getPlot()));
     }
 }
