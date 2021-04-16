@@ -1,0 +1,7 @@
+.movie-box:hover{
+  background-color: orange;
+}
+
+.movie-box{
+  background-color:rgb(21, 23, 23) ;
+}
