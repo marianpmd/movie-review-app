@@ -21,8 +21,7 @@ public class MovieBox extends VerticalLayout {
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
         addClassName("movie-box");
-        setPadding(true);
-        setMargin(true);
+
         setSpacing(true);
 
         this.getElement().getStyle().set("border-color", "orange");
@@ -31,11 +30,11 @@ public class MovieBox extends VerticalLayout {
         Image moviePic = new Image(movieURL,"alt");
         moviePic.setHeight("250px");
         moviePic.setWidth("250px");
-        add(moviePic);
 
         Label titleLabel = new Label(title);
         titleLabel.getElement().getStyle().set("margin","9px");
         Label durationLabel = new Label();
+        add(moviePic,titleLabel);
 
         if (duration != null){
             String time = LocalTime.MIN.plus(Duration.ofMinutes(duration)).toString();
@@ -50,7 +49,7 @@ public class MovieBox extends VerticalLayout {
         }
 
         durationLabel.getElement().getStyle().set("margin","10px");
-        add(titleLabel,durationLabel);
+        add(durationLabel);
         String sendableId = id.replace("/","$");
 
         this.addClickListener(event ->{

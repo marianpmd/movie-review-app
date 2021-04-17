@@ -3,10 +3,12 @@ package com.example.application.views.main;
 import com.example.application.data.entity.MovieEntity;
 import com.example.application.data.service.MovieService;
 import com.example.application.views.boxes.MovieBox;
+import com.vaadin.flow.component.ItemLabelGenerator;
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteParameters;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -17,8 +19,24 @@ public class MovieView extends FlexLayout {
 
     public MovieView(@Autowired MovieService movieService) {
         setSizeFull();
+        setFlexDirection(FlexDirection.COLUMN);
+
+        ComboBox<MovieEntity> comboBox = new ComboBox<>();
 
         List<MovieEntity> movies = movieService.getAll();
+
+        comboBox.setItems(movies);
+        comboBox.setItemLabelGenerator((ItemLabelGenerator<MovieEntity>) MovieEntity::getTitle);
+        comboBox.setPlaceholder("Search for a movie ... ");
+
+        comboBox.addValueChangeListener(event ->{
+            String sendableId = event.getValue().getId();
+            sendableId = sendableId.replace("/","$");
+            UI.getCurrent().navigate(ReviewView.class,new RouteParameters("id",sendableId));
+        });
+
+        add(comboBox);
+
         for (MovieEntity movie : movies) {
 
             add(new MovieBox(movie.getId()
@@ -28,37 +46,6 @@ public class MovieView extends FlexLayout {
                     , movie.getImageURL()));
         }
 
-
-        /*for (int i = 0; i < movies.size(); i++) {
-
-            row.add(new MovieBox(movies.get(i).getId()
-                    ,movies.get(i).getTitle()
-                    ,movies.get(i).getRating()
-                    ,movies.get(i).getMinutes()
-                    ,movies.get(i).getImageURL()));
-            colCount++;
-            if (colCount % 2 == 0 && colCount!=0){
-                add(row);
-                row = createCustomRow();
-            }
-            if (movies.size() - colCount < 4){
-                add(row);
-            }
-
-        }*/
-
     }
 
-    private HorizontalLayout createCustomRow() {
-        HorizontalLayout row = new HorizontalLayout();
-        row.setSpacing(true);
-        row.setPadding(true);
-        row.setMargin(true);
-
-        row.getElement().getStyle().set("border-color","252, 136, 3");
-        row.getElement().getStyle().set("border-radius","7px");
-
-        return row;
-
-    }
 }
