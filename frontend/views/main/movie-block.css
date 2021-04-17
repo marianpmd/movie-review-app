@@ -3,5 +3,9 @@
 }
 
 .movie-box{
-  background-color:rgb(21, 23, 23) ;
+  background-color: #080526;
+}
+
+#navbarTop{
+  background-color: orange;
 }

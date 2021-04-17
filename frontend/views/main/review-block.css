@@ -1,0 +1,14 @@
+.review-view{
+
+}
+
+label{
+    background-color: #1d2140;
+    padding: 10px;
+    border-radius: 8px;
+    color: #b3b1ff;
+}
+
+[theme~="movie-overview-data"]{
+
+}

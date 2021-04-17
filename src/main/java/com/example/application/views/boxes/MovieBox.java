@@ -17,7 +17,7 @@ import java.time.LocalTime;
 @CssImport("./views/main/movie-block.css")
 public class MovieBox extends VerticalLayout {
 
-    public MovieBox(String id,String title , Integer duration, String movieURL) {
+    public MovieBox(String id,String title ,Double rating, Integer duration, String movieURL) {
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
         addClassName("movie-box");
@@ -40,6 +40,13 @@ public class MovieBox extends VerticalLayout {
         if (duration != null){
             String time = LocalTime.MIN.plus(Duration.ofMinutes(duration)).toString();
             durationLabel = new Label("Time: "+time);
+            add(durationLabel);
+        }
+
+        Label ratingLabel = new Label();
+        if (rating != null){
+            ratingLabel = new Label("Rating : " + rating);
+            add(ratingLabel);
         }
 
         durationLabel.getElement().getStyle().set("margin","10px");

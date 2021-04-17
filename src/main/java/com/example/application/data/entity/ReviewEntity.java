@@ -29,6 +29,12 @@ public class ReviewEntity {
 
     }
 
+    public ReviewEntity(String author, String text, Time time) {
+        this.author = author;
+        this.text = text;
+        this.time = time;
+    }
+
     public ReviewEntity(Integer id, MovieEntity movie, String author, String text, Time time) {
         this.movie = movie;
         this.author = author;

@@ -20,7 +20,7 @@ import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.flow.component.dependency.CssImport;
 
 
-@PWA(name = "movie-review-app", shortName = "movie-review-app", enableInstallPrompt = false)
+@PWA(name = "movie-review-app", shortName = "movie-review-app", enableInstallPrompt = true)
 @JsModule("./styles/shared-styles.js")
 @Theme(value = Lumo.class, variant = Lumo.DARK)
 @CssImport("./views/main/main-view.css")
